@@ -26,7 +26,7 @@ The system architecture is shown in the figure below:
 ![fig](docs/arch_design.drawio.png)
 
 ## Task
-- [ ] Construct the FastAPI backend
+- [x] Construct the FastAPI backend
 - [ ] Configure the API gateway(The step1 box in the arch fig.)
 - [ ] Test the API access with authorization
 - [ ] Build the frontend side
