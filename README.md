@@ -32,3 +32,16 @@ The system architecture is shown in the figure below:
 - [ ] Build the frontend side
 
 
+## Project memo
+### Construct the FastAPI backend
+Python environment setup:
+```bash
+pyenv local 3.11.3
+python -m venv .venv
+poetry init
+poetry shell
+poetry add fastapi[all] firebase_admin urllib3==1.26.15
+poetry export -f requirements.txt --output requirements.txt
+```
+
+Prepare the Dockerfile: [Dockerfile](./Dockerfile)

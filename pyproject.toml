@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "firebase-auth-hosting-api-gateway-cloudrun"
+version = "0.1.0"
+description = ""
+authors = ["eryeden <ery.eden@gmail.com>"]
+readme = "README.md"
+packages = [{include = "firebase_auth_hosting_api_gateway_cloudrun"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.96.0"}
+firebase-admin = "^6.1.0"
+urllib3 = "1.26.15"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
