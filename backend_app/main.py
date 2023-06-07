@@ -14,15 +14,15 @@ from firebase_admin import auth, credentials
 import firebase_admin
 
 import logging
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 # initialize firebase admin
 path_to_certificate = os.environ.get('PATH_TO_FIREBASE_CREDENTIALS')
 if not path_to_certificate:
-    logger.info("PATH_TO_FIREBASE_CREDENTIALS not set. Using default path.")
+    logging.info("PATH_TO_FIREBASE_CREDENTIALS not set. Using default path.")
     path_to_certificate = "./backend_app/firebase_credentials.json"
 else:
-    logger.info("PATH_TO_FIREBASE_CREDENTIALS set, use {}".format(path_to_certificate))
+    logging.info("PATH_TO_FIREBASE_CREDENTIALS set, use {}".format(path_to_certificate))
 
 
 cred = credentials.Certificate(path_to_certificate)
@@ -30,7 +30,7 @@ firebase_admin.initialize_app(cred)
 
 
 app = FastAPI()
-logger.info("App successfully initialized.")
+logging.info("App successfully initialized.")
 
 # Configurations for CORS:
 # The following means;

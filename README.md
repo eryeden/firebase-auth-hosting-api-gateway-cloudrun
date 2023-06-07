@@ -63,5 +63,3 @@ In this project, a Secret manager is used for secret management.
 I uploaded `firebase_credentials.json` on the GCP Secret manager. FastAPI can access this secret and load this file by accessing `/secret/firebase_test_secret`.
 The path to the secret file can be configured on the GCP console.
 FastAPI can get he path to the secret file via an environment varibale `PATH_TO_FIREBASE_CREDENTIALS`. If the env var is not defined, FastAPI will use the default path `"./backend_app/firebase_credentials.json"`.
-
-
