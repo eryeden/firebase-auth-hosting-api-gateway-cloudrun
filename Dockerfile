@@ -15,4 +15,7 @@ COPY . ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run the web service on container startup. Here we use the uvicorn.
-CMD exec uvicorn helloworld.main:app --reload --host 0.0.0.0 --port $PORT
+#CMD exec uvicorn backend_app.main:app --reload --host 0.0.0.0
+#CMD ["uvicorn", "backend_app.main:app", "--host", "0.0.0.0", "--port", $PORT]
+CMD exec uvicorn backend_app.main:app --host 0.0.0.0 --port ${PORT} --workers 1
+
