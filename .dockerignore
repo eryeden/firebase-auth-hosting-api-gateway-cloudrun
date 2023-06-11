@@ -10,3 +10,5 @@ poetry.lock
 pyproject.toml
 .python-version
 .venv
+.vscode
+docs
