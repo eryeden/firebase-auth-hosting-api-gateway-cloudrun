@@ -196,6 +196,21 @@ npm install axios vue-axios firebaseui firebase-tools
 npm run dev
 ```
 
+#### Firebase auth
+This frontend requires credentials for firebase auth.
+It shall be stored in `vue-frontend/.env.local` as follows:
+```
+VITE_apiKey=AIzaSyCk8OVN-yaL4EwPhvIL1bf5cdWI6qOEwGE
+VITE_authDomain=fahagc-c908b.firebaseapp.com
+VITE_projectId=fahagc-c908b
+VITE_storageBucket=fahagc-c908b.appspot.com
+VITE_messagingSenderId=967712212023
+VITE_appId=1:967712212023:web:0263a480b5365d90812bb2
+```
+By default, the env file is not exist on the repo because of `.gitignore`.
+We can get above variables from firebase console.
+
+
 
 
 
