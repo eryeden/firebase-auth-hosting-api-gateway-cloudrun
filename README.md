@@ -36,7 +36,6 @@ The system architecture is shown in the figure below:
 - [ ] Build the frontend side; We will prepare the frontend side for the test purpose.
 - [ ] Test the API access with authorization
 
-
 ## Project memo
 
 ### Construct the FastAPI backend
@@ -149,7 +148,8 @@ gcloud api-gateway api-configs create fahagc-backend-config \
 ```
 
 5. Deployment
-This command will deploy the api gateway. The configuration will be mapped by `api-config` id.
+   This command will deploy the api gateway. The configuration will be mapped by `api-config` id.
+
 ```bash
 gcloud api-gateway gateways create fahagc-backend-gateway \
   --api=fahagc-backend --api-config=fahagc-backend-config \
@@ -162,6 +162,7 @@ I will proceed to implement the API gateway with authorization functionality.
 6. Add the authorization functionality:
 
 You can add the authentication feature using the following configuration:
+
 ```yaml
 # Configurations for the API authorization
 securityDefinitions:
@@ -175,12 +176,25 @@ securityDefinitions:
     x-google-audiences: "fahagc-c908b"
 ```
 
-You should write the above configuration on the top level of [yaml specification](api_gateway/openapi2-api-backend.yaml).
+You should write the above configuration on the top level
+of [yaml specification](api_gateway/openapi2-api-backend.yaml).
 
 ### The frontend
+
 I will prepare the front end beforehand for testing the API gateway.
+The followings are used for this front end:
 
+| Name | Description        |
+|------|--------------------|
+| vue3 | Frontend framework |
+| Vite | Frontend tooling   |
 
+```bash
+npm init vue@latest
+cd vue-frontend
+npm install axios vue-axios firebaseui firebase-tools
+npm run dev
+```
 
 
 
