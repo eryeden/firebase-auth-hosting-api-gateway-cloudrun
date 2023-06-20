@@ -3,13 +3,16 @@ swagger: '2.0'
 info:
   title: fahagc-backend This is a specification for fahagc API.
   description: Sample API on API Gateway with a Cloud Run backend
-  version: 1.0.0
+  version: 1.2.0
 schemes:
 - https
 produces:
 - application/json
 x-google-backend:
   address: https://firebase-auth-hosting-api-gateway-cloudrun-4lvq7hntvq-an.a.run.app
+#x-google-endpoints:
+#  - name: https://firebase-auth-hosting-api-gateway-cloudrun-4lvq7hntvq-an.a.run.app
+#    allowCors: True
 
 # Configurations for the API authorization
 securityDefinitions:
@@ -24,6 +27,14 @@ securityDefinitions:
 
 paths:
   /greeting_message:
+    options: # preflight用のoptionsを追加, ここは認証をかけない（空で返すAPIをバックエンド側で用意）
+      summary: cors_greeting_message
+      operationId: corsHello_greeting_message
+      responses:
+        "200":
+          description: A successful response
+          schema:
+            type: string
     get:
       summary: Cloud run greeting
       operationId: greeting_message
@@ -33,6 +44,14 @@ paths:
           schema:
             type: string
   /special_message:
+    options: # preflight用のoptionsを追加, ここは認証をかけない（空で返すAPIをバックエンド側で用意）
+      summary: cors_special_message
+      operationId: corsHello_special_message
+      responses:
+        "200":
+          description: A successful response
+          schema:
+            type: string
     get:
       summary: The special message from cloud run
       operationId: special_message
@@ -41,5 +60,5 @@ paths:
           description: A successful response
           schema:
             type: string
-      security:
-        - firebase: [ ]
+#      security:
+#        - firebase: [ ]

@@ -35,12 +35,13 @@ logging.info("App successfully initialized.")
 # Configurations for CORS:
 # The following means;
 allowed_origins = [
-    "http://localhost:5173"
+    "*"
 ]
 
 allowed_methods = [
-    "POST",
-    "GET"
+    # "POST",
+    # "GET"
+    "*"
 ]
 
 allowed_headers = [
@@ -56,10 +57,6 @@ app.add_middleware(
     allow_methods=allowed_methods,
     allow_headers=allowed_headers
 )
-
-
-app = FastAPI()
-
 
 def get_user(res: Response,
              cred: HTTPAuthorizationCredentials=Depends(HTTPBearer(auto_error=False))):
@@ -94,3 +91,13 @@ async def special_message():
 @app.get("/greeting_message")
 async def greeting_message():
     return {"message": "Welcome back, sir!"}
+
+# CORS_HEADERS = {
+#     "Access-Control-Allow-Origin": "*",
+#     "Access-Control-Allow-Methods": "*",
+#     "Access-Control-Allow-Headers": "*",
+#     "Access-Control-Max-Age": "3600",
+# }
+# @app.options("/greeting_message")
+# async def greeting_message_options():
+#     return ("", 200, CORS_HEADERS)

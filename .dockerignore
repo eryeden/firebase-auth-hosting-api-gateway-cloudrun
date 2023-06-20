@@ -12,3 +12,4 @@ pyproject.toml
 .venv
 .vscode
 docs
+vue-frontend

@@ -93,7 +93,7 @@ Open the console of CloudRun service and give a privilege to the current service
 
 ```bash
 gcloud init
-gcloud config set project PROJECT_ID
+gcloud config set project fahagc-c908b #PROJECT_ID
 gcloud config set run/region asia-northeast1
 gcloud run deploy firebase-auth-hosting-api-gateway-cloudrun \
 --set-env-vars "PATH_TO_FIREBASE_CREDENTIALS=/secret/firebase_test_secret" \
