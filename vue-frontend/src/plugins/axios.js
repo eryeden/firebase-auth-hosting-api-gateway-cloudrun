@@ -3,13 +3,13 @@ export let axios;
 export default {
     install(app) {
         // base url バックエンド(FastAPI) のURL:port を指定する
-        // set the
         app.config.globalProperties.$http.defaults.baseURL = 'https://fahagc-backend-gateway-cors-cck6v5mf.an.gateway.dev/';
-        // https://fahagc-backend-gateway-cors-cck6v5mf.an.gateway.dev
+        // app.config.globalProperties.$http.defaults.baseURL = 'http://127.0.0.1:8000/';
 
 
         // request interceptor
         app.config.globalProperties.$http.interceptors.request.use(config => {
+            // config.headers.Accept = 'application/json';
             config.headers.Accept = 'application/json';
             return config;
         })

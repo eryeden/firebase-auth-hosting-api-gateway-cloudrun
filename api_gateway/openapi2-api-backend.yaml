@@ -10,9 +10,6 @@ produces:
 - application/json
 x-google-backend:
   address: https://firebase-auth-hosting-api-gateway-cloudrun-4lvq7hntvq-an.a.run.app
-#x-google-endpoints:
-#  - name: https://firebase-auth-hosting-api-gateway-cloudrun-4lvq7hntvq-an.a.run.app
-#    allowCors: True
 
 # Configurations for the API authorization
 securityDefinitions:
@@ -47,6 +44,7 @@ paths:
     options: # preflight用のoptionsを追加, ここは認証をかけない（空で返すAPIをバックエンド側で用意）
       summary: cors_special_message
       operationId: corsHello_special_message
+      security: []  # これでfirebase authの認証を無効化できる。
       responses:
         "200":
           description: A successful response
@@ -60,5 +58,5 @@ paths:
           description: A successful response
           schema:
             type: string
-#      security:
-#        - firebase: [ ]
+      security:
+        - firebase: []

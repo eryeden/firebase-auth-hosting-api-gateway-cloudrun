@@ -36,6 +36,28 @@ export default {
         this.user_id = uid;
         this.user_name = displayName;
         console.log("User data:" + this.user_id);
+
+        // fetch the special_message with authentication from fast api
+        auth.currentUser?.getIdToken(false).then(
+            (idToken) => {
+              console.log("ID token: " + idToken)
+
+              axios.get("special_message", {
+                headers: {
+                  "Authorization": "Bearer " + idToken
+                }
+              }).then(
+                  (response) => {
+                    console.log("API response:[/special_message]" + response)
+                    this.special_message = response.data
+                  }
+              ).catch(
+                  (error) => {
+                    console.log("Error API response:[/special_message]" + error)
+                  }
+              )
+            })
+
       } else {
         // User is signed out
         // ...
@@ -44,27 +66,15 @@ export default {
     });
 
     // // fetch the data from fast api
-    axios.get("special_message").then(
-        (response) => (this.special_message = response.data)
-    ).catch(
-        (e) => console.log(e)
-    );
-    // fetch the data from fast api
-    // axios.get("https://fahagc-backend-gateway-cors-cck6v5mf.an.gateway.dev/special_message").then(
-    //     (response) => (this.special_message = response.data)
-    // ).catch(
-    //     (e) => console.log(e)
-    // );
-
-    // fetch the data from fast api
-    axios.get("greeting_message").then(
+    axios.get("/greeting_message").then(
         (response) => (this.greeting_message = response.data)
     ).catch(
         (e) => console.log(e)
     );
-    // fetch the data from fast api
-    // axios.get("https://fahagc-backend-gateway-cors-cck6v5mf.an.gateway.dev/greeting_message").then(
-    //     (response) => (this.greeting_message = response.data)
+
+
+    // axios.get("special_message").then(
+    //     (response) => (this.special_message = response.data)
     // ).catch(
     //     (e) => console.log(e)
     // );

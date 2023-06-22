@@ -39,15 +39,19 @@ allowed_origins = [
 ]
 
 allowed_methods = [
-    # "POST",
-    # "GET"
-    "*"
+    "POST",
+    "GET",
+    "DELETE",
+    "PATCH",
+    "OPTIONS",
+    "HEAD"
 ]
 
 allowed_headers = [
+    "Content-Type,Authorization",
     "*",
-    # "application/json",
-    # "X-AUTH-TOKEN"
+    "application/json",
+    "X-AUTH-TOKEN",
 ]
 
 app.add_middleware(
@@ -69,13 +73,16 @@ def get_user(res: Response,
     try:
         decoded_token = auth.verify_id_token(cred.credentials)
     except Exception as err:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail=f"Invalid authentication credentials. {err}",
-            headers={'WWW-Authenticate': 'Bearer error="invalid_token"'},
-        )
+        pass
+        # raise HTTPException(
+        #     status_code=status.HTTP_401_UNAUTHORIZED,
+        #     detail=f"Invalid authentication credentials. {err}",
+        #     headers={'WWW-Authenticate': 'Bearer error="invalid_token"'},
+        # )
+
     res.headers['WWW-Authenticate'] = 'Bearer realm="auth_required"'
-    return decoded_token
+    # return decoded_token
+    return None
 
 
 @app.get("/user_info")
@@ -84,7 +91,7 @@ async def user(user_info=Depends(get_user)):
             "user_info": user_info}
 
 @app.get("/special_message")
-async def special_message():
+async def special_message(user_info=Depends(get_user)):
     the_special_message = "You are the best!"
     return {"message": the_special_message}
 
@@ -94,10 +101,10 @@ async def greeting_message():
 
 # CORS_HEADERS = {
 #     "Access-Control-Allow-Origin": "*",
-#     "Access-Control-Allow-Methods": "*",
+#     "Access-Control-Allow-Methods": 'Content-Type,Authorization',
 #     "Access-Control-Allow-Headers": "*",
 #     "Access-Control-Max-Age": "3600",
 # }
 # @app.options("/greeting_message")
 # async def greeting_message_options():
-#     return ("", 200, CORS_HEADERS)
+#     return Response("", 200, CORS_HEADERS)
