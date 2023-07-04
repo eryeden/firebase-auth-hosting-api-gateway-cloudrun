@@ -44,7 +44,7 @@ paths:
     options: # preflight用のoptionsを追加, ここは認証をかけない（空で返すAPIをバックエンド側で用意）
       summary: cors_special_message
       operationId: corsHello_special_message
-      security: []  # これでfirebase authの認証を無効化できる。
+      # security: []  # これでfirebase authの認証を無効化できる。
       responses:
         "200":
           description: A successful response

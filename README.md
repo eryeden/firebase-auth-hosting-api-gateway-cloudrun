@@ -179,6 +179,22 @@ securityDefinitions:
 You should write the above configuration on the top level
 of [yaml specification](api_gateway/openapi2-api-backend.yaml).
 
+#### Updating the gateway profile
+
+You can update the gateway profile of existing gateway.
+1. Add the profile of gateway
+   You need to create the new profile but the only profile not for the gateway.
+```bash
+gcloud api-gateway api-configs create <new_config_name> \
+  --api=fahagc-backend --openapi-spec=api_gateway/<new file of openapi profile> \
+  --project=fahagc-c908b --backend-auth-service-account=967712212023-compute@developer.gserviceaccount.com
+```
+
+2. Update the profile of existing gateway
+```bash
+gcloud api-gateway gateways update fahagc-backend-gateway-cors --api=fahagc-backend --api-config=<new_config_name> --location=asia-northeast1 --project=fahagc-c908b
+```
+
 ### The frontend
 
 I will prepare the front end beforehand for testing the API gateway.
